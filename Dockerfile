@@ -11,11 +11,11 @@ COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 
 # Copy the rest of the project files
-COPY web_service.py .
+COPY predict_test.py .
 COPY model_random_forest.bin .
 
 # Expose the API port
 EXPOSE 9696
 
 # Run the Flask service
-CMD ["python", "web_service.py"]
+CMD ["python", "predict_test.py"]

@@ -23,6 +23,38 @@ If `requirements.txt` is missing or incomplete, install the main packages:
 pip install flask scikit-learn pandas requests
 ```
 
+Alternatively you can use `pipenv` to create an isolated virtual environment and install the required packages there. This is the recommended approach for development because it keeps dependencies isolated from your system Python.
+
+1. Install `pipenv` (system-wide or in a base environment):
+```
+pip install pipenv
+```
+
+2. Create a Pipenv environment using a specific Python version (choose a version you have installed, e.g. `3.8` or `3.13`):
+```
+pipenv --python 3.13
+```
+
+3. Install the project dependencies inside the Pipenv environment. This will add them to the generated `Pipfile`:
+```
+pipenv install pandas numpy scikit-learn flask waitress requests
+```
+
+4. Run commands inside the Pipenv environment:
+- Start a shell inside the environment:
+```
+pipenv shell
+```
+- Or run a single command without entering the shell:
+```
+pipenv run python train.py
+pipenv run python predict_test.py
+```
+
+Notes:
+- `waitress` is recommended for serving the Flask app in production (on Windows/Linux). The `predict_test.py` script can be started under the Pipenv environment the same as shown above.
+- The `Pipfile` created by `pipenv` records your dependencies; collaborators can run `pipenv install` to reproduce the environment.
+
 **Train the model**
 1. Make sure `loan_data.csv` is in the project root.
 2. Run the training script:
